@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>comp-math-2</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <form action="/solve" method="post" id="integralsForm">
+
+            <label for="integral">Choose integral to solve:</label>
+            <select name="integral" id="integral">
+                <option value="" selected disabled>Choose an integral</option>
+                {% for key, value in integral.items() %}
+                    <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="method">Choose method:</label>
+            <select name="method" id="method">
+                <option value="rectangle_left">Rectangle Method (Left)</option>
+                <option value="rectangle_right">Rectangle Method (Right)</option>
+                <option value="rectangle_midpoint">Rectangle Method (Midpoint)</option>
+                <option value="trapezoid">Trapezoid Method</option>
+                <option value="simpson">Simpson's Method</option>
+            </select>
+
+            <label for="lower_limit">Lower limit of the integral:</label>
+            <input type="number" name="lower_limit" id="lower_limit" step="any">
+            <br>
+            <label for="upper_limit">Upper limit of the integral:</label>
+            <input type="number" name="upper_limit" id="upper_limit" step="any">
+
+            <label for="accuracy">Accuracy:</label>
+            <input type="number" name="accuracy" id="accuracy" step="any">
+            <br>
+
+            <button type="submit">Solve</button>
+        </form>
+    </div>
+    <div class="results-container" id="result-container">
+        <div class="error-message" id="error-message">
+            {% if error_message %}
+                <p>{{ error_message }}</p>
+            {% endif %}
+        </div>
+        <div class="message" id="message">
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </div>
+        <h1>Results</h1>
+        <p>{{ result }}</p>
+
+    </div>
+</div>
+<script src="../static/script.js"></script>
+<script>
+    function replaceCommaWithDot(element) {
+        element.value = element.value.replace(/,/g, '.');
+    }
+</script>
+</body>
+</html>
