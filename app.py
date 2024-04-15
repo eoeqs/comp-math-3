@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
-
-from modules.getter import *
+from modules.functions import *
 from modules.solution_handler import *
 from modules.validator import *
 
@@ -38,16 +37,12 @@ def solve():
     if not valid:
         return render_template('index.html', integrals=integrals, error_message=message)
 
-    integral_func = get_integral_function(integral_choice)
-
-    integral_latex = integrals[integral_choice]
-
     result = solve_integral_handler(integral_choice, lower_limit, upper_limit, accuracy, method_choice)
 
-    if result.startswith("Error"):
-        return render_template('index.html', integrals=integrals, error_message=result)
-    else:
+    if isinstance(result, float):
         return render_template('index.html', integrals=integrals, result=result)
+    else:
+        return render_template('index.html', integrals=integrals, result=str(result))
 
 
 if __name__ == '__main__':

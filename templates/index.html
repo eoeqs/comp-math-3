@@ -16,7 +16,7 @@
             <label for="integral">Choose integral to solve:</label>
             <select name="integral" id="integral">
                 <option value="" selected disabled>Choose an integral</option>
-                {% for key, value in integral.items() %}
+                {% for key, value in integrals.items() %}
                     <option value="{{ key }}">{{ value }}</option>
                 {% endfor %}
             </select>
@@ -25,7 +25,7 @@
             <select name="method" id="method">
                 <option value="rectangle_left">Rectangle Method (Left)</option>
                 <option value="rectangle_right">Rectangle Method (Right)</option>
-                <option value="rectangle_midpoint">Rectangle Method (Midpoint)</option>
+                <option value="rectangle_middle">Rectangle Method (Midpoint)</option>
                 <option value="trapezoid">Trapezoid Method</option>
                 <option value="simpson">Simpson's Method</option>
             </select>
