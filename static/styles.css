@@ -65,9 +65,6 @@ button[type="submit"]:hover {
     text-align: center;
 }
 
-.graph-container {
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
+.results-container {
     text-align: center;
 }

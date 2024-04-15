@@ -9,7 +9,7 @@ def rectangle_left_method(integral_func, lower_limit, upper_limit, accuracy):
             result += integral_func(lower_limit + i * width)
         result *= width
         if abs(result - prev_result) < accuracy:
-            return result
+            return result, n
         prev_result = result
         n *= 2
         half_result = 0
@@ -19,7 +19,7 @@ def rectangle_left_method(integral_func, lower_limit, upper_limit, accuracy):
         half_result *= half_width
         error = abs(half_result - result) / (2 ** k - 1)
         if error < accuracy:
-            return half_result
+            return half_result, n
 
 
 def rectangle_right_method(integral_func, lower_limit, upper_limit, accuracy):
@@ -33,7 +33,7 @@ def rectangle_right_method(integral_func, lower_limit, upper_limit, accuracy):
             result += integral_func(lower_limit + i * width)
         result *= width
         if abs(result - prev_result) < accuracy:
-            return result
+            return result, n
         prev_result = result
         n *= 2
         half_result = 0
@@ -43,7 +43,7 @@ def rectangle_right_method(integral_func, lower_limit, upper_limit, accuracy):
         half_result *= half_width
         error = abs(half_result - result) / (2 ** k - 1)
         if error < accuracy:
-            return half_result
+            return half_result, n
 
 
 def rectangle_middle_method(integral_func, lower_limit, upper_limit, accuracy):
@@ -57,7 +57,7 @@ def rectangle_middle_method(integral_func, lower_limit, upper_limit, accuracy):
             result += integral_func(lower_limit + (i + 0.5) * width)
         result *= width
         if abs(result - prev_result) < accuracy:
-            return result
+            return result, n
         prev_result = result
         n *= 2
         half_result = 0
@@ -67,7 +67,7 @@ def rectangle_middle_method(integral_func, lower_limit, upper_limit, accuracy):
         half_result *= half_width
         error = abs(half_result - result) / (2 ** k - 1)
         if error < accuracy:
-            return half_result
+            return half_result, n
 
 
 def trapezoid_method(integral_func, lower_limit, upper_limit, accuracy):
@@ -82,7 +82,7 @@ def trapezoid_method(integral_func, lower_limit, upper_limit, accuracy):
             result += integral_func(lower_limit + i * width)
         result *= width
         if abs(result - prev_result) < accuracy:
-            return result
+            return result, n
         prev_result = result
         n *= 2
         half_result = 0
@@ -92,7 +92,7 @@ def trapezoid_method(integral_func, lower_limit, upper_limit, accuracy):
         half_result *= half_width
         error = abs(half_result - result) / (2 ** k - 1)
         if error < accuracy:
-            return half_result
+            return half_result, n
 
 
 def simpsons_method(integral_func, lower_limit, upper_limit, accuracy):
@@ -110,7 +110,7 @@ def simpsons_method(integral_func, lower_limit, upper_limit, accuracy):
                 result += 4 * integral_func(lower_limit + i * width)
         result *= width / 3
         if abs(result - prev_result) < accuracy:
-            return result
+            return result, n
         prev_result = result
         n *= 2
         half_result = 0
@@ -120,6 +120,4 @@ def simpsons_method(integral_func, lower_limit, upper_limit, accuracy):
         half_result *= half_width
         error = abs(half_result - result) / (2 ** k - 1)
         if error < accuracy:
-            return half_result
-
-
+            return half_result, n

@@ -44,20 +44,23 @@
         </form>
     </div>
     <div class="results-container" id="result-container">
-        <div class="error-message" id="error-message">
-            {% if error_message %}
-                <p>{{ error_message }}</p>
-            {% endif %}
-        </div>
-        <div class="message" id="message">
-            {% if message %}
-                <p>{{ message }}</p>
-            {% endif %}
-        </div>
-        <h1>Results</h1>
-        <p>{{ result }}</p>
-
+    <div class="error-message" id="error-message">
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
     </div>
+    <div class="message" id="message">
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </div>
+    <h1>Results</h1>
+    <p>Integration Result: {{ result }}</p>
+    {% if divisions %}
+        <p>Number of Divisions: {{ divisions }}</p>
+    {% endif %}
+</div>
+
 </div>
 <script src="../static/script.js"></script>
 <script>

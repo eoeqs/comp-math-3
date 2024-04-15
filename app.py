@@ -37,12 +37,12 @@ def solve():
     if not valid:
         return render_template('index.html', integrals=integrals, error_message=message)
 
-    result = solve_integral_handler(integral_choice, lower_limit, upper_limit, accuracy, method_choice)
-
+    result, divisions = solve_integral_handler(integral_choice, lower_limit, upper_limit, accuracy, method_choice)
+    print(result, divisions)
     if isinstance(result, float):
-        return render_template('index.html', integrals=integrals, result=result)
+        return render_template('index.html', integrals=integrals, result=result, divisions=divisions)
     else:
-        return render_template('index.html', integrals=integrals, result=str(result))
+        return render_template('index.html', integrals=integrals, result=str(result), divisions=divisions)
 
 
 if __name__ == '__main__':
